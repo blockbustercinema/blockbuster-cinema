@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Streaming Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0;
+            font-size: 24px;
+        }
+
+        .video-container {
+            margin: 20px auto;
+            max-width: 800px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            display: none; /* Hide video container initially */
+        }
+
+        video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+
+        .thumbnails {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 20px auto;
+            max-width: 1000px;
+        }
+
+        .thumbnails img {
+            width: 200px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .thumbnails img:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            margin-top: 20px;
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Video Streaming Website
+    </header>
+
+    <!-- Main Video Player (Initially hidden) -->
+    <div class="video-container" id="videoContainer">
+        <video id="videoPlayer" controls>
+            <source id="videoSource" src="" type="video/mp4">
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+
+    <!-- Video Thumbnails -->
+    <div class="thumbnails">
+        <img src="D:\stree 2.jpg" alt="Video 1" onclick="changeVideo('D:\movie\Video 1.mkv')">
+        <img src="D:\maari.jpg" alt="Video 2" onclick="changeVideo('D:\movie\Video 2.mkv')">
+        <img src="D:\ulajh.jpg" alt="Video 3" onclick="changeVideo('D:\movie\Video 3.mkv')">
+    </div>
+
+    <footer>
+        &copy; 2024 Video Streaming. All Rights Reserved.
+    </footer>
+
+    <script>
+        function changeVideo(videoSrc) {
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoSource = document.getElementById('videoSource');
+            const videoContainer = document.getElementById('videoContainer');
+
+            // Show the video container
+            videoContainer.style.display = 'block';
+
+            console.log('Changing video to:', videoSrc); // Debugging log
+
+            // Update video source
+            videoSource.src = videoSrc;
+
+            // Load the new video
+            videoPlayer.load();
+
+            // Play the video when it's ready
+            videoPlayer.addEventListener('loadeddata', function() {
+                console.log('Video is loaded and ready to play.'); // Debugging log
+                videoPlayer.play();
+            }, { once: true });
+
+            // Handle errors
+            videoPlayer.addEventListener('error', function(e) {
+                console.error('Error loading video:', e); // Debugging log
+            });
+        }
+    </script>
+
+</body>
+</html>
